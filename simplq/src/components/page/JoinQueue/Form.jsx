@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
@@ -32,8 +31,10 @@ export function JoinQueueForm(props) {
   }
 
   function handleContactChange(e) {
-    setContact(e);
+    const contact = e.target.value;
+    setContact(contact);
     setInvalidContact(false);
+    
   }
 
   const handleClick = () => {
@@ -71,22 +72,21 @@ export function JoinQueueForm(props) {
         error={invalidName}
         helperText={invalidName ? 'Name is required' : ''}
       />
-      <PhoneInput
-        disableCountryCode
-        containerClass={classes.textField}
+
+      <TextField
         placeholder="Phone Number"
-        country={'in'}
         value={contact}
-        inputProps={{
-          name: 'phone',
-          required: true,
-          autoFocus: true,
+        fullWidth
+        required
+        type="number"
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
         }}
-        inputStyle={{
-          width: '100%',
-        }}
-        isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
+        variant="outlined"
+        helperText={invalidContact ? 'Phone number required' : ''}
         onChange={handleContactChange}
+        error={invalidContact}
       />
       <div className={classes.buttonGroup}>
         {addingInProgress ? (
