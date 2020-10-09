@@ -8,8 +8,8 @@ export default (props) => {
   return (
     <SidePanelButton
       Icon={AddIcon}
-      title="Add Member"
-      description="Add a person to this queue manually"
+      title="Add User Manually"
+      description="Add person to queue manually"
       expandable
     >
       <div className={styles['admin-join-queue-form']}>
